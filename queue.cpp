@@ -54,8 +54,8 @@ int main(){
 	Queue q;
 	makeQueue(q);
 	push(q, 1);
-//	push(q, 2);
-//	push(q, 3);
+	push(q, 2);
+	push(q, 3);
 	
 	int t = pop(q);
 	while(t){
