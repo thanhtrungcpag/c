@@ -79,21 +79,54 @@ Node *search(Tree t, ElementType val){
 	}
 }
 
+void ReplaceNode(Tree &x, Tree &y){
+	if(y->left != NULL){
+		ReplaceNode(x, y->left);
+	}else{
+		x->data = y->data;
+		x = y;
+		y = y->right;
+	}
+}
+
+void deleteNode(Tree &t, ElementType data){
+	if(t == NULL){
+		return;
+	}
+	if(t->data > data){
+		deleteNode(t->left, data);
+	}else if(t->data < data){
+		deleteNode(t->right, data);
+	}else{
+		Node *temp = t;
+		if(t->left == NULL){
+			t = t->right;
+		}else if(t->right == NULL){
+			t = t->left;
+		}else {
+			ReplaceNode(temp, t->right);
+		}
+		free(temp);
+	}
+}
+
 int main(){
 	Tree t;
 	InitTree(t);
 	input(t);
 	cout <<"NLR"<<endl;
 	NLR(t);
-	cout <<"LNR"<<endl;
-	LNR(t);
-	cout <<"LRN"<<endl;
-	LRN(t);
+//	cout <<"LNR"<<endl;
+//	LNR(t);
+//	cout <<"LRN"<<endl;
+//	LRN(t);
 	if(search(t, 8) != NULL){
 		cout<<"Exist"<<endl;
 	}else{
 		cout<<"Not Exist"<<endl;
 	}
-	
+	deleteNode(t, 6);
+		cout <<"NLR"<<endl;
+	NLR(t);	
 	return 0;
 }
