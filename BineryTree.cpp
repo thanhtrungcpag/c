@@ -59,6 +59,24 @@ void LRN(Tree t){
 	}
 }
 
+void NLR2(Tree t){
+	if(t != NULL){
+		stack<Node*> st;
+		st.push(t);
+		while(!st.empty()){
+			Node* t = st.top();
+			cout<<t<<endl;
+			if(t->left != NULL){
+				st.push(t->left);
+			}
+			if(t->right != NULL){
+				st.push(t->right);
+			}
+		}
+		
+	}
+}
+
 void input(Tree &t){
 	int data;
 	cin >>data;
@@ -89,6 +107,18 @@ void ReplaceNode(Tree &x, Tree &y){
 	}
 }
 
+
+int countLeaf(Tree t){
+	if(t == NULL){
+		return 0;
+	}
+	if(t->left == NULL && t->right == NULL){
+		return 1;
+	}
+	return countLeaf(t->left) + countLeaf(t->right);
+}
+
+
 void deleteNode(Tree &t, ElementType data){
 	if(t == NULL){
 		return;
@@ -116,6 +146,9 @@ int main(){
 	input(t);
 	cout <<"NLR"<<endl;
 	NLR(t);
+	cout <<"NLR2"<<endl;
+	NLR(t);
+	cout <<"Leaf "<<countLeaf(t)<<endl;
 //	cout <<"LNR"<<endl;
 //	LNR(t);
 //	cout <<"LRN"<<endl;

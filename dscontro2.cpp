@@ -112,6 +112,18 @@ void Output(List L){
 	}
 }
 
+void Reverse(List &L){
+	Node *Q = L;
+	Node *prev = NULL, *next = NULL;
+	while(Q != NULL){
+		next = Q->next;
+		Q->next = prev;
+		prev = Q;
+		Q = next;
+	}
+	L = prev;
+}
+
 int main(){
 	
 	List L;
@@ -122,6 +134,7 @@ int main(){
 	InsertNode(L, 4, 4);
 	int temp;
 	Remove(L, temp, 1);
+	Reverse(L);
 	Output(L);
 	return 0;
 }
